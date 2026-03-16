@@ -1,14 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<title>Fake API</tile>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fake API Users</title>
+
+<!-- jQuery CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+
+body{
+font-family: Arial, sans-serif;
+margin:40px;
+}
+
+h2{
+text-align:center;
+}
+
+table{
+border-collapse: collapse;
+width:100%;
+}
+
+th, td{
+border:1px solid black;
+padding:10px;
+text-align:center;
+}
+
+th{
+background-color:#f2f2f2;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<h2>User Information</h2>
+<h2>User Information Table</h2>
 
-<table border="1" id="userTable">
+<table id="userTable">
 
 <thead>
 <tr>
@@ -18,43 +53,63 @@
 <th>Username</th>
 <th>Email</th>
 <th>Zipcode</th>
-<th>latitude</th>
+<th>Latitude</th>
 <th>Longitude</th>
 </tr>
 </thead>
 
 <tbody>
 
+<!-- Personal Information (First Row) -->
 <tr>
 <td>0</td>
 <td>Vincent</td>
 <td>Ampong</td>
-<td>AVince,/td>
-<td>ampongvincent@gmail.com</td>
-<td>7014</td>
-<td>0</td>
-<td>0</td>
+<td>vincent123</td>
+<td>vincent@email.com</td>
+<td>1100</td>
+<td>14.5995</td>
+<td>120.9842</td>
 </tr>
 
 </tbody>
 
 </table>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
 $(document).ready(function(){
 
-$.get("https://jsonplaceholder.typicode/users", function(data){
+$.get("https://jsonplaceholder.typicode.com/users", function(data){
 
-console.log(data);
+data.forEach(function(user){
+
+let name = user.name.split(" ");
+let firstname = name[0];
+let lastname = name[1];
+
+let row = `
+<tr>
+<td>${user.id}</td>
+<td>${firstname}</td>
+<td>${lastname}</td>
+<td>${user.username}</td>
+<td>${user.email}</td>
+<td>${user.address.zipcode}</td>
+<td>${user.address.geo.lat}</td>
+<td>${user.address.geo.lng}</td>
+</tr>
+`;
+
+$("#userTable tbody").append(row);
+
+});
 
 });
 
 });
 
 </script>
-
 
 </body>
 </html>
