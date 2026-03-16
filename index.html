@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fake API</tile>
+</head>
+
+<body>
+
+<h2>User Information</h2>
+
+<table border="1" id="userTable">
+
+<thead>
+<tr>
+<th>ID</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Username</th>
+<th>Email</th>
+<th>Zipcode</th>
+<th>latitude</th>
+<th>Longitude</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>0</td>
+<td>Vincent</td>
+<td>Ampong</td>
+<td>AVince,/td>
+<td>ampongvincent@gmail.com</td>
+<td>7014</td>
+<td>0</td>
+<td>0</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+$(document).ready(function(){
+
+$.get("https://jsonplaceholder.typicode/users", function(data){
+
+console.log(data);
+
+});
+
+});
+
+</script>
+
+
+</body>
+</html>
